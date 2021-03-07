@@ -13,6 +13,7 @@ def cmdInput():
 
 @app.route("/output")
 def cmdOutput():
+    # userName = request.args.get("userName")
     commandInput = request.args.get("output")
     commandOutput =  subprocess.getoutput("commandInput")
     return render_template("output.html", cmdOutput=commandOutput)
