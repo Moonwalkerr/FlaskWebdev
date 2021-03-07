@@ -1,7 +1,5 @@
-from flask import Flask
-from flask.globals import request
-from flask.templating import render_template
-
+from flask import Flask, request, render_template
+import subprocess
 
 app = Flask("MenuApp")
 
@@ -15,5 +13,6 @@ def cmdInput():
 
 @app.route("/output")
 def cmdOutput():
-    output = request.args.get("output")
-    return render_template("output.html", cmdOutput=output)
+    commandInput = request.args.get("output")
+    commandOutput =  subprocess.getoutput("commandInput")
+    return render_template("output.html", cmdOutput=commandOutput)
