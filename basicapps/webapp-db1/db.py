@@ -1,3 +1,4 @@
+import re
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -28,3 +29,46 @@ class myDb(database.Model):
 
 # creating files, schemas, records => db.sqlite file
 database.create_all()
+
+
+
+## Performing some CRUD Operations on our database
+
+# ----------------------------------------------------
+# Create:
+
+# ### creating an object => creating a row inside our table
+# jack_snyder = myDb("Jack Snyder",4,'Amazing')
+# ### RAM => Storage (database)
+# database.session.add(jack_snyder)
+# database.session.commit()  # commiting session operation
+
+# russo_bros = myDb("Russo Brothers",44,'Awesome')
+# database.session.add(russo_bros)
+# database.session.commit() 
+
+
+
+# ----------------------------------------------------
+# Read :
+
+# record1 = myDb.query.get(1)
+# print(record1.age)
+### Read - Filter 
+# record_age = myDb.query.filter_by(age=44)
+# print(record_age.all()[0].name)
+
+
+# ----------------------------------------------------
+# Update
+# rec_1 = myDb.query.get(1)
+# rec_1.age = 44
+# database.session.add(rec_1)
+# database.session.commit()
+
+
+# ----------------------------------------------------
+# Delete
+rec_2 = myDb.query.get(2)
+database.session.delete(rec_2)
+database.session.commit()
